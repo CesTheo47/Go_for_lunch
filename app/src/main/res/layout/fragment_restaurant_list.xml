@@ -34,7 +34,7 @@
         android:layout_marginStart="24dp"
         android:textStyle="bold"
         android:text="Name"
-        app:layout_constraintStart_toEndOf="@id/item_list_name"
+        app:layout_constraintEnd_toStartOf="@id/item_list_avatar"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -43,8 +43,19 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:textStyle="bold"
-        android:text="Adress"
+        android:text="Resto type"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+        android:id="@+id/item_list_name_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:textStyle="bold"
+        android:text="Adress"
+        app:layout_constraintStart_toEndOf="@id/item_list_name_2"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
@@ -56,6 +67,27 @@
         android:textStyle="bold"
         android:text="Hour"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+        android:id="@+id/item_list_name_6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:textStyle="bold"
+        android:text="Avatar"
+        app:layout_constraintEnd_toStartOf="@id/item_list_avatar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+        android:id="@+id/item_list_name_7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:textStyle="bold"
+        android:text="Rating stars"
+        app:layout_constraintEnd_toStartOf="@id/item_list_avatar"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
 
