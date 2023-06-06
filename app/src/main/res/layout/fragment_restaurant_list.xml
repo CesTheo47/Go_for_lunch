@@ -33,9 +33,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:textStyle="bold"
-        android:text="Name"
+        android:text="Distance"
         app:layout_constraintEnd_toStartOf="@id/item_list_avatar"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="24dp"/>
 
     <TextView
         android:id="@+id/item_list_name_2"
@@ -75,10 +76,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:textStyle="bold"
-        android:text="Avatar"
+        android:text="Comments"
         app:layout_constraintEnd_toStartOf="@id/item_list_avatar"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="10dp"/>
 
     <TextView
         android:id="@+id/item_list_name_7"
@@ -88,7 +90,8 @@
         android:textStyle="bold"
         android:text="Rating stars"
         app:layout_constraintEnd_toStartOf="@id/item_list_avatar"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="10dp"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
