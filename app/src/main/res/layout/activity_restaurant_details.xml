@@ -23,15 +23,15 @@
         android:layout_height="wrap_content"
         app:backgroundTint="@color/design_default_color_surface"
         android:layout_marginRight="20dp"
-        app:layout_constraintBottom_toTopOf="@id/card_info"
+        app:layout_constraintBottom_toTopOf="@id/cardDetails"
         android:src="@drawable/noun_done_1486461"
-        app:tint="#E5E514"
+        app:tint="@color/teal_200"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/img_avatar" />
 
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/card_info"
+        android:id="@+id/cardDetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/img_avatar"
@@ -46,7 +46,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/txt_name_info"
+                android:id="@+id/restaurantName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Titre"
@@ -55,22 +55,31 @@
                 android:textColor="@color/cardview_dark_background"
                 android:textSize="30sp" />
 
-            <TextView
-                android:id="@+id/txt_address_info"
+            <RatingBar
+                android:id="@+id/ratingRestaurantDetails"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/txt_name_info"
-                app:layout_constraintStart_toStartOf="parent"
-                android:text="Restaurant_type" />
+                android:layout_marginStart="8dp"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                app:layout_constraintStart_toEndOf="@id/restaurantName"
+                app:layout_constraintTop_toTopOf="@id/restaurantName"
+                app:layout_constraintBottom_toTopOf="@id/restaurantType"/>
 
             <TextView
-                android:id="@+id/txt_fb_info"
+                android:id="@+id/restaurantType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/txt_name_info"
-                app:layout_constraintStart_toEndOf="@id/txt_address_info"
-                android:layout_marginStart="24dp"
-                android:text="Adress" />
+                app:layout_constraintTop_toBottomOf="@id/restaurantName"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="Restaurant_type - " />
+
+            <TextView
+                android:id="@+id/restaurantAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/restaurantName"
+                app:layout_constraintStart_toEndOf="@id/restaurantType"
+                android:text="Address" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
@@ -79,7 +88,7 @@
         android:id="@+id/card_icon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/card_info"
+        app:layout_constraintTop_toBottomOf="@id/cardDetails"
         app:cardBackgroundColor="#ffff"
         app:cardCornerRadius="4dp">
 
@@ -91,15 +100,24 @@
             android:layout_marginTop="20dp"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/icon_info_1"
+            <ImageButton
+                android:id="@+id/icPhoneDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#00FFFFFF"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginStart="30dp"
-                android:drawableTop="@drawable/ic_phone"
-                android:drawableTint="#ff6e00"
+                app:srcCompat="@drawable/ic_phone"
+                app:tint="@color/orange" />
+
+            <TextView
+                android:id="@+id/iconTextPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/icPhoneDetail"
+                android:layout_marginStart="30dp"
                 android:text="CALL" />
 
             <TextView
@@ -129,7 +147,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/card_info_bio"
+        android:id="@+id/cardDetails_bio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="#ffff"
