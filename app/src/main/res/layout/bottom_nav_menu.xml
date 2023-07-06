@@ -9,4 +9,8 @@
         android:id="@+id/navigation_dashboard"
         android:icon="@drawable/ic_star_24dp">
     </item>
+    <item
+        android:id="@+id/navigation_star"
+        android:icon="@drawable/ic_star_24dp">
+    </item>
 </menu>
