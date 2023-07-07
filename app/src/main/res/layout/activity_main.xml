@@ -11,12 +11,9 @@
     tools:openDrawer="start">
 
     <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context=".ui.main.MainActivity">
 
         <FrameLayout
             android:id="@+id/fragment_container"
@@ -35,8 +32,8 @@
             android:background="@color/black"
             app:itemIconTint="@color/white"
             app:itemTextColor="@color/white"
-            android:foregroundGravity="bottom"/>
-            <!--app:menu="@menu/bottom_nav_menu"-->
+            android:foregroundGravity="bottom"
+            app:menu="@menu/bottom_nav_menu"/>
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
@@ -45,6 +42,6 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_home"/>
-        <!--app:menu="@menu/activity_home_drawer"-->
+        app:headerLayout="@layout/nav_header_home"
+        app:menu="@menu/nav_header_menu"/>
 </androidx.drawerlayout.widget.DrawerLayout>

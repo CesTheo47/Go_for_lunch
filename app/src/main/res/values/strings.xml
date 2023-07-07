@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Go_for_lunch</string>
+    <string name="bottom_nav_map">Map View</string>
+    <string name="bottom_nav_workmates">Workmates</string>
+    <string name="bottom_nav_list">List View</string>
+    <string name="header_nav_lunch">YOUR LUNCH</string>
+    <string name="header_nav_settings">SETTINGS</string>
+    <string name="header_nav_logout">LOGOUT</string>
 </resources>
