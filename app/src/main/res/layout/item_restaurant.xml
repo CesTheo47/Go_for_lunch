@@ -76,7 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:textStyle="bold"
-        android:drawableStart="@drawable/noun_avatar_1076159"
+        android:drawableStart="@drawable/ic_star_24dp"
         app:layout_constraintEnd_toStartOf="@id/item_list_avatar"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

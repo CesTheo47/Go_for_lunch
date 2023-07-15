@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/restaurantListFragment">
+    <fragment
+        android:id="@+id/restaurantListFragment"
+        android:name="com.example.go_for_lunch.ui.main.fragment.RestaurantListFragment"
+        android:label="RestaurantListFragment" />
+
+    <fragment
+        android:id="@+id/workmatesListFragment"
+        android:name="com.example.go_for_lunch.ui.main.fragment.WorkmatesListFragment"
+        android:label="WorkmatesListFragment" />
+
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.example.go_for_lunch.ui.main.fragment.MapsFragment"
+        android:label="MapsFragment" />
+</navigation>
