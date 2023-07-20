@@ -10,4 +10,8 @@
     <color name="orange">#ff6e00</color>
     <color name="orange_600">#FB3F1C</color>
     <color name="orange_800">#DF2E12</color>
+    <color name="material_green_50">#E8F5E9</color>
+    <color name="material_green_500">#4CAF50</color>
+    <color name="material_green_700">#388E3C</color>
+    <color name="material_purple_a700">#AA00FF</color>
 </resources>
