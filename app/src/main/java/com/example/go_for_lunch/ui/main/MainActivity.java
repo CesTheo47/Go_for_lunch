@@ -30,8 +30,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-
-
     private ActivityMainBinding binding;
 
     @Override
@@ -45,6 +43,4 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = navHostFragment.getNavController();
         NavigationUI.setupWithNavController(binding.bottomNavView, navController);
     }
-
-
 }

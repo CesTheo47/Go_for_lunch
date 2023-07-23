@@ -73,10 +73,17 @@ public class LoginActivity extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             Toast.makeText(LoginActivity.this, "Bienvenue, " + user.getDisplayName(), Toast.LENGTH_SHORT).show();
+            startMainActivity();
         } else {
             Toast.makeText(LoginActivity.this, "Connexion réussie, mais impossible d'obtenir les informations de l'utilisateur.", Toast.LENGTH_SHORT).show();
             startSignIn();
         }
     }
-    git add
+
+    private void startMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
 }
