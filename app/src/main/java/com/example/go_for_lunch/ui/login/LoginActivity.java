@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
         );
 
         AuthMethodPickerLayout customLayout = new AuthMethodPickerLayout
-                .Builder(R.layout.activity_firebase)
+                .Builder(R.layout.activity_login)
                 .setGoogleButtonId(R.id.googleSignInButton)
                 .setEmailButtonId(R.id.facebookLoginButton)
                 .build();

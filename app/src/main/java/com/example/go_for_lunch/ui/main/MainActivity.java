@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -31,6 +32,7 @@ import com.example.go_for_lunch.ui.main.fragment.WorkmatesListFragment;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -49,21 +51,44 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         initToolBar();
+        initNavView();
 
-        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.fragment_container);
+        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_container);
         NavController navController = navHostFragment.getNavController();
-        NavigationUI.setupActionBarWithNavController(this,navController, binding.drawerLayout);
-        NavigationUI.setupWithNavController(binding.navView, navController);
         NavigationUI.setupWithNavController(binding.bottomNavView, navController);
     }
 
     private void initToolBar() {
-
         setSupportActionBar(binding.toolbar);
-
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu);
+        binding.toolbar.setNavigationOnClickListener(v -> binding.drawerLayout.open());
+    }
+
+    private void initNavView() {
+        TextView email = binding.navView.getHeaderView(0).findViewById(R.id.tVUserEmailDrawerMenu);
+        email.setText("test@gmail.com");
+
+        binding.navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.nav_lunch:
+                        Toast.makeText(MainActivity.this, "click lunch", Toast.LENGTH_SHORT).show();
+                        return true;
+                    case R.id.nav_settings:
+                        Toast.makeText(MainActivity.this, "click settings", Toast.LENGTH_SHORT).show();
+                        return true;
+                    case R.id.nav_logout:
+                        Toast.makeText(MainActivity.this, "click logout", Toast.LENGTH_SHORT).show();
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        });
+
+
     }
 }
