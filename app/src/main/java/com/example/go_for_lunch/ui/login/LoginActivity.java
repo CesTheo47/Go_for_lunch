@@ -39,8 +39,13 @@ public class LoginActivity extends AppCompatActivity {
             });
 
     private void startSignIn() {
-        List<AuthUI.IdpConfig> providers = Arrays.asList(
-                /*new AuthUI.IdpConfig.EmailBuilder().build(),       */
+
+        AuthUI authUI = AuthUI.getInstance();
+
+        Intent signInIntent = authUI.createSignInIntentBuilder().build();
+
+        /*List<AuthUI.IdpConfig> providers = Arrays.asList(
+                new AuthUI.IdpConfig.EmailBuilder().build(),
                 new AuthUI.IdpConfig.GoogleBuilder().build(),
                 new AuthUI.IdpConfig.FacebookBuilder().build()
         );
@@ -62,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
         Intent signInIntent = AuthUI.getInstance()
                 .createSignInIntentBuilder()
                 .setAvailableProviders(Arrays.asList(googleIdp,facebookIdp))
-                .build();
+                .build();*/
 
         signInLauncher.launch(signInIntent);
     }
