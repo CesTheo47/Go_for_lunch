@@ -40,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void startSignIn() {
 
+        // Authentification automatique
         AuthUI authUI = AuthUI.getInstance();
 
         Intent signInIntent = authUI.createSignInIntentBuilder().build();
