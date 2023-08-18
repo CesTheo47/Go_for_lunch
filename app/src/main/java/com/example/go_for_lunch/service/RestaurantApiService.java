@@ -7,4 +7,5 @@ import java.util.ArrayList;
 public interface RestaurantApiService {
 
     ArrayList<Restaurant> getRestaurants();
+
 }

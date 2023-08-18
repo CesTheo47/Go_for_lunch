@@ -30,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                     if (user != null) {
                         Toast.makeText(LoginActivity.this, "Bienvenue, " + user.getDisplayName(), Toast.LENGTH_SHORT).show();
+                        startMainActivity();
                     } else {
                         Toast.makeText(LoginActivity.this, "Connexion réussie, mais impossible d'obtenir les informations de l'utilisateur.", Toast.LENGTH_SHORT).show();
                     }
@@ -40,12 +41,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void startSignIn() {
 
-        // Authentification automatique
-        AuthUI authUI = AuthUI.getInstance();
-
-        Intent signInIntent = authUI.createSignInIntentBuilder().build();
-
-        /*List<AuthUI.IdpConfig> providers = Arrays.asList(
+        List<AuthUI.IdpConfig> providers = Arrays.asList(
                 new AuthUI.IdpConfig.EmailBuilder().build(),
                 new AuthUI.IdpConfig.GoogleBuilder().build(),
                 new AuthUI.IdpConfig.FacebookBuilder().build()
@@ -54,21 +50,16 @@ public class LoginActivity extends AppCompatActivity {
         AuthMethodPickerLayout customLayout = new AuthMethodPickerLayout
                 .Builder(R.layout.activity_login)
                 .setGoogleButtonId(R.id.googleSignInButton)
-                .setEmailButtonId(R.id.facebookLoginButton)
-                .build();
-
-        AuthUI.IdpConfig googleIdp = new AuthUI.IdpConfig.GoogleBuilder()
-                .setScopes(Arrays.asList(Scopes.GAMES))
-                .build();
-
-        AuthUI.IdpConfig facebookIdp = new AuthUI.IdpConfig.FacebookBuilder()
-                .setPermissions(Arrays.asList("user_friends"))
+                .setEmailButtonId(R.id.emailSignInButton)
+                .setFacebookButtonId(R.id.facebookLoginButton)
                 .build();
 
         Intent signInIntent = AuthUI.getInstance()
                 .createSignInIntentBuilder()
-                .setAvailableProviders(Arrays.asList(googleIdp,facebookIdp))
-                .build();*/
+                .setAvailableProviders(providers)
+                .setAuthMethodPickerLayout(customLayout)
+                .build();
+
 
         signInLauncher.launch(signInIntent);
     }
@@ -81,7 +72,6 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(LoginActivity.this, "Bienvenue, " + user.getDisplayName(), Toast.LENGTH_SHORT).show();
             startMainActivity();
         } else {
-            Toast.makeText(LoginActivity.this, "Connexion réussie, mais impossible d'obtenir les informations de l'utilisateur.", Toast.LENGTH_SHORT).show();
             startSignIn();
         }
     }
