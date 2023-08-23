@@ -38,32 +38,35 @@
 
     <Button
         android:id="@+id/facebookLoginButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/app_description"
-        android:text="Facbook"
+        android:backgroundTint="#425E9A"
+        android:text="Sign in with Facebook"
         android:layout_margin="16dp" />
 
     <Button
         android:id="@+id/googleSignInButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/facebookLoginButton"
-        android:text="GOOgle"
+        android:backgroundTint="#DD4B39"
+        android:text="Sign in with Google"
         android:layout_margin="16dp" />
 
     <Button
         android:id="@+id/emailSignInButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/googleSignInButton"
-        android:text="Email"
-        android:layout_margin="16dp" />
+        android:backgroundTint="@color/black"
+        android:text="Sign in with Email"
+        android:layout_margin="16dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
