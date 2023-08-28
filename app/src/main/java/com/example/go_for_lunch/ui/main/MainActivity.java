@@ -2,6 +2,7 @@ package com.example.go_for_lunch.ui.main;
 
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -13,10 +14,13 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.go_for_lunch.BuildConfig;
 import com.example.go_for_lunch.R;
 import com.example.go_for_lunch.databinding.ActivityMainBinding;
 import com.example.go_for_lunch.ui.login.LoginActivity;
 import com.firebase.ui.auth.AuthUI;
+
+import com.google.android.gms.location.places.Places;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
@@ -76,8 +80,6 @@ public class MainActivity extends AppCompatActivity {
         AuthUI.getInstance().signOut(this).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        // L'utilisateur est maintenant déconnecté
-                        // Vous pouvez rediriger l'utilisateur vers l'écran de connexion ou tout autre écran de votre choix
                         startActivity(new Intent(MainActivity.this, LoginActivity.class));
                         finish();
                     }

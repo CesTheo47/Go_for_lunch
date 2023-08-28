@@ -16,6 +16,12 @@ android {
         resConfigs "en", "fr"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField(
+                "String",
+                "GOOGLE_PLACES_API_KEY",
+                "\""+getProperty("GOOGLE_PLACES_API_KEY")+"\""
+        )
     }
 
     buildTypes {
@@ -32,6 +38,8 @@ android {
     buildFeatures {
         viewBinding true
     }
+
+
 }
 
 dependencies {
@@ -54,6 +62,8 @@ dependencies {
 
     implementation "androidx.navigation:navigation-fragment:2.6.0"
     implementation "androidx.navigation:navigation-ui:2.6.0"
-
+    // API Google
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
+    implementation 'com.google.android.gms:play-services-places:17.0.0'
 
 }
