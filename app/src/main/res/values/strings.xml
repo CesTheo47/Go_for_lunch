@@ -14,5 +14,5 @@
     <!-- Facebook Application ID, prefixed by 'fb'. Enables Chrome Custom tabs. -->
     <string name="facebook_login_protocol_scheme" translatable="false">fbAPP_ID</string>
     <!--Clé API-->
-    <string name="google_maps_api_key" translatable="false">YOUR_API_KEY_HERE</string>
+    <string name="google_maps_api_key" translatable="false">AIzaSyBH8Knlp8pFWkOnmRZyyjUcdYpe4GZ8FLs</string>
 </resources>
