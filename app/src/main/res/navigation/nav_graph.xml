@@ -5,16 +5,16 @@
     app:startDestination="@id/navigation_restaurant_list">
     <fragment
         android:id="@+id/navigation_restaurant_list"
-        android:name="com.example.go_for_lunch.ui.main.fragment.RestaurantListFragment"
+        android:name="com.example.go_for_lunch.ui.main.activities.fragment.RestaurantListFragment"
         android:label="RestaurantListFragment" />
 
     <fragment
         android:id="@+id/navigation_workmates_list"
-        android:name="com.example.go_for_lunch.ui.main.fragment.WorkmatesListFragment"
+        android:name="com.example.go_for_lunch.ui.main.activities.fragment.WorkmatesListFragment"
         android:label="WorkmatesListFragment" />
 
     <fragment
         android:id="@+id/navigation_map"
-        android:name="com.example.go_for_lunch.ui.main.fragment.MapsFragment"
+        android:name="com.example.go_for_lunch.ui.main.activities.fragment.MapsFragment"
         android:label="MapsFragment" />
 </navigation>
