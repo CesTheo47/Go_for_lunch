@@ -4,6 +4,7 @@ import retrofit2.Retrofit;
 
 public class RetrofitApi {
 
+    // Singleton => une seule instance de Retrofit
     private static RetrofitApi instance = null;
 
     private final RestaurantApiService service;
