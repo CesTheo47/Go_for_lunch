@@ -1,8 +1,5 @@
 package com.example.go_for_lunch.ui.main;
 
-import android.content.Context;
-import android.widget.Toast;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -17,34 +14,33 @@ import retrofit2.Response;
 public class RestaurantViewModel extends ViewModel {
 
     private final RestaurantRepository repository;
-    private final Context context;
 
-    public RestaurantViewModel(Context context) {
-        repository = new RestaurantRepository();
-        this.context = context;
-    }
+    private MutableLiveData<NearbySearchResponse> nearbyRestaurants = new MutableLiveData<>();
 
     public LiveData<NearbySearchResponse> getNearbyRestaurants() {
-        MutableLiveData<NearbySearchResponse> data = new MutableLiveData<>();
-        Call<NearbySearchResponse> call = repository.getNearbySearchRestaurants();
+        return nearbyRestaurants;
+    }
 
-        call.enqueue(new Callback<NearbySearchResponse>() {
+    public RestaurantViewModel(RestaurantRepository restaurantRepository) {
+        repository = restaurantRepository;
+    }
+
+    public void loadNearbyRestaurants() {
+
+        repository.getNearbySearchRestaurants().enqueue(new Callback<NearbySearchResponse>() {
             @Override
             public void onResponse(Call<NearbySearchResponse> call, Response<NearbySearchResponse> response) {
                 if (response.isSuccessful()) {
-                    data.setValue(response.body());
+                    nearbyRestaurants.postValue(response.body());
                 } else {
-                    Toast.makeText(context, "Échec de la récupération des données. Veuillez réessayer plus tard.", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(context, "Échec de la récupération des données. Veuillez réessayer plus tard.", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<NearbySearchResponse> call, Throwable t) {
-                // ??
 
             }
         });
-
-        return data;
     }
 }

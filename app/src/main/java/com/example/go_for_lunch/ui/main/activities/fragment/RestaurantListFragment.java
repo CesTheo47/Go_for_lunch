@@ -11,7 +11,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.go_for_lunch.R;
 import com.example.go_for_lunch.model.NearbySearchResponse;
+import com.example.go_for_lunch.model.Result;
 import com.example.go_for_lunch.ui.main.RestaurantViewModel;
+import com.example.go_for_lunch.ui.main.ViewModelFactory;
 
 import javax.annotation.Nullable;
 
@@ -22,7 +24,7 @@ public class RestaurantListFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = new ViewModelProvider(this, new ViewModelProvider.AndroidViewModelFactory(requireActivity().getApplication())).get(RestaurantViewModel.class);
+        viewModel = new ViewModelProvider(getActivity(), ViewModelFactory.getInstance()).get(RestaurantViewModel.class);
     }
 
     @Override
@@ -35,8 +37,10 @@ public class RestaurantListFragment extends Fragment {
         viewModel.getNearbyRestaurants().observe(getViewLifecycleOwner(), new Observer<NearbySearchResponse>() {
             @Override
             public void onChanged(NearbySearchResponse nearbySearchResponse) {
-                // donné de l'API??
+                Result restaurant = nearbySearchResponse.getResults().get(0);
+                System.out.println(restaurant.getName());
 
+                // update adapter with data
             }
         });
         return view;
