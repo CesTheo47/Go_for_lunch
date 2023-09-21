@@ -8,18 +8,21 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.go_for_lunch.R;
+import com.example.go_for_lunch.databinding.FragmentRestaurantListBinding;
 import com.example.go_for_lunch.model.NearbySearchResponse;
-import com.example.go_for_lunch.model.Result;
 import com.example.go_for_lunch.ui.main.RestaurantViewModel;
 import com.example.go_for_lunch.ui.main.ViewModelFactory;
+import com.example.go_for_lunch.ui.main.adapters.RestaurantRecyclerViewAdapter;
 
 import javax.annotation.Nullable;
 
 public class RestaurantListFragment extends Fragment {
 
     private RestaurantViewModel viewModel;
+    private FragmentRestaurantListBinding mBinding;
+    private RestaurantRecyclerViewAdapter adapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,18 +34,23 @@ public class RestaurantListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_restaurant_list, container, false);
+        mBinding = FragmentRestaurantListBinding.inflate(inflater, container, false);
+
+        initRecyclerView();
 
         // Observer pour les données de l'API
         viewModel.getNearbyRestaurants().observe(getViewLifecycleOwner(), new Observer<NearbySearchResponse>() {
             @Override
             public void onChanged(NearbySearchResponse nearbySearchResponse) {
-                Result restaurant = nearbySearchResponse.getResults().get(0);
-                System.out.println(restaurant.getName());
-
-                // update adapter with data
+                adapter.updateData(nearbySearchResponse.getRestaurants());
             }
         });
-        return view;
+        return mBinding.getRoot();
+    }
+
+    private void initRecyclerView() {
+        adapter = new RestaurantRecyclerViewAdapter();
+        mBinding.restaurantList.setAdapter(adapter);
+        mBinding.restaurantList.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 }
