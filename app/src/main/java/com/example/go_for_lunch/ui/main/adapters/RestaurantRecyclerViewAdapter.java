@@ -28,7 +28,7 @@ public class RestaurantRecyclerViewAdapter extends RecyclerView.Adapter<Restaura
         return new ViewHolder(binding);
     }
 
-    // Récuperation du nom
+    // Récuperation des données
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Restaurant restaurant = mRestaurants.get(position);
@@ -36,7 +36,7 @@ public class RestaurantRecyclerViewAdapter extends RecyclerView.Adapter<Restaura
         holder.mBinding.itemListAddress.setText(restaurant.getVicinity());
         holder.mBinding.itemListType.setText(TextUtils.join(", ", restaurant.getTypes()));
         // Methode pour check si le restaurant à des horraires d'ouvertures => null
-        //holder.mBinding.itemListHour.setText(restaurant.getOpeningHours().toString());
+        /*holder.mBinding.itemListHour.setText(restaurant.getOpeningHours().toString());*/
     }
 
 
