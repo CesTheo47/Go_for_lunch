@@ -1,4 +1,4 @@
-package com.example.go_for_lunch.ui.main.activities.fragment;
+package com.example.go_for_lunch.ui.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,9 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.go_for_lunch.databinding.FragmentRestaurantListBinding;
 import com.example.go_for_lunch.model.NearbySearchResponse;
-import com.example.go_for_lunch.ui.main.RestaurantViewModel;
-import com.example.go_for_lunch.ui.main.ViewModelFactory;
-import com.example.go_for_lunch.ui.main.adapters.RestaurantRecyclerViewAdapter;
+import com.example.go_for_lunch.viewModel.RestaurantViewModel;
+import com.example.go_for_lunch.viewModel.ViewModelFactory;
+import com.example.go_for_lunch.ui.adapters.RestaurantRecyclerViewAdapter;
 
 import javax.annotation.Nullable;
 

@@ -1,4 +1,4 @@
-package com.example.go_for_lunch.ui.main.adapters;
+package com.example.go_for_lunch.ui.adapters;
 
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -16,6 +16,7 @@ import java.util.List;
 public class RestaurantRecyclerViewAdapter extends RecyclerView.Adapter<RestaurantRecyclerViewAdapter.ViewHolder> {
 
     private List<Restaurant> mRestaurants;
+    /*private OpeningHours openingHours;*/
 
     public RestaurantRecyclerViewAdapter() {
         mRestaurants = new ArrayList<>();
@@ -35,6 +36,7 @@ public class RestaurantRecyclerViewAdapter extends RecyclerView.Adapter<Restaura
         holder.mBinding.itemListName.setText(restaurant.getName());
         holder.mBinding.itemListAddress.setText(restaurant.getVicinity());
         holder.mBinding.itemListType.setText(TextUtils.join(", ", restaurant.getTypes()));
+        /*holder.mBinding.itemListHour.(openingHours.isOpenNow());*/
         // Methode pour check si le restaurant à des horraires d'ouvertures => null
         /*holder.mBinding.itemListHour.setText(restaurant.getOpeningHours().toString());*/
     }

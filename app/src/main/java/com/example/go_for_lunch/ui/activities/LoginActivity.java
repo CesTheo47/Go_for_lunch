@@ -1,4 +1,4 @@
-package com.example.go_for_lunch.ui.login;
+package com.example.go_for_lunch.ui.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,11 +10,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.go_for_lunch.R;
-import com.example.go_for_lunch.ui.main.MainActivity;
 import com.firebase.ui.auth.AuthMethodPickerLayout;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
-import com.google.android.gms.common.Scopes;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 

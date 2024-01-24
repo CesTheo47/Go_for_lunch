@@ -1,4 +1,4 @@
-package com.example.go_for_lunch.ui.main;
+package com.example.go_for_lunch.viewModel;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

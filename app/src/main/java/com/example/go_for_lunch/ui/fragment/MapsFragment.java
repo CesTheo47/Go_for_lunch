@@ -1,4 +1,4 @@
-package com.example.go_for_lunch.ui.main.activities.fragment;
+package com.example.go_for_lunch.ui.fragment;
 
 import android.os.Bundle;
 

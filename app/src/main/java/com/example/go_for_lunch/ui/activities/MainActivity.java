@@ -1,4 +1,4 @@
-package com.example.go_for_lunch.ui.main;
+package com.example.go_for_lunch.ui.activities;
 
 
 import android.content.Intent;
@@ -17,7 +17,8 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.go_for_lunch.R;
 import com.example.go_for_lunch.databinding.ActivityMainBinding;
-import com.example.go_for_lunch.ui.login.LoginActivity;
+import com.example.go_for_lunch.viewModel.RestaurantViewModel;
+import com.example.go_for_lunch.viewModel.ViewModelFactory;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
