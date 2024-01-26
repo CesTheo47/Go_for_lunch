@@ -1,11 +1,15 @@
 package com.example.go_for_lunch.ui.activities;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -37,6 +41,41 @@ public class LoginActivity extends AppCompatActivity {
                 }
             });
 
+    ActivityResultLauncher<String[]> locationPermissionRequest =
+            registerForActivityResult(new ActivityResultContracts
+                            .RequestMultiplePermissions(), result -> {
+                        Boolean fineLocationGranted = result.getOrDefault(
+                                Manifest.permission.ACCESS_FINE_LOCATION, false);
+                        Boolean coarseLocationGranted = result.getOrDefault(
+                                Manifest.permission.ACCESS_COARSE_LOCATION, false);
+                        if ((fineLocationGranted != null && fineLocationGranted) && (coarseLocationGranted != null && coarseLocationGranted)) {
+                            // Location access granted
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                            if (user != null) {
+                                Toast.makeText(LoginActivity.this, "Bienvenue, " + user.getDisplayName(), Toast.LENGTH_SHORT).show();
+                                startMainActivity();
+                            } else {
+                                startSignIn();
+                            }
+                        } else {
+                            // No location access granted.
+                            Toast.makeText(this, "Faire un dialog - BTN", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS); // Redirect vers localisation permission
+                            Uri uri = Uri.fromParts("package", getPackageName(), null);
+                            intent.setData(uri);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+                            finish();
+                        }
+                    }
+            );
+
+    // ...
+
+    // Before you perform the actual permission request, check whether your app
+    // already has the permissions, and whether your app needs to show a permission
+    // rationale dialog. For more details, see Request permissions.
+
     private void startSignIn() {
 
         List<AuthUI.IdpConfig> providers = Arrays.asList(
@@ -61,17 +100,15 @@ public class LoginActivity extends AppCompatActivity {
 
         signInLauncher.launch(signInIntent);
     }
-    
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            Toast.makeText(LoginActivity.this, "Bienvenue, " + user.getDisplayName(), Toast.LENGTH_SHORT).show();
-            startMainActivity();
-        } else {
-            startSignIn();
-        }
+        locationPermissionRequest.launch(new String[]{
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+        });
+
     }
 
     private void startMainActivity() {
