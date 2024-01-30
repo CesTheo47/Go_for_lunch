@@ -7,11 +7,11 @@ import retrofit2.Call;
 
 public class RestaurantRepository {
 
-    public Call<NearbySearchResponse> getNearbySearchRestaurants() {
+    public Call<NearbySearchResponse> getNearbySearchRestaurants(double latitude, double longitude) {
 
         return RetrofitApi.getInstance().getRestaurantApiService().getNearbyRestaurants(
-                "43.481287, -1.563028",
-                50,
+                latitude + "," + longitude,
+                5000,
                 "restaurant",
                 BuildConfig.GOOGLE_PLACES_API_KEY
         );

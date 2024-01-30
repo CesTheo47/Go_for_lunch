@@ -25,9 +25,9 @@ public class RestaurantViewModel extends ViewModel {
         repository = restaurantRepository;
     }
 
-    public void loadNearbyRestaurants() {
+    public void loadNearbyRestaurants(double latitude, double longitude) {
 
-        repository.getNearbySearchRestaurants().enqueue(new Callback<NearbySearchResponse>() {
+        repository.getNearbySearchRestaurants(latitude, longitude).enqueue(new Callback<NearbySearchResponse>() {
             @Override
             public void onResponse(Call<NearbySearchResponse> call, Response<NearbySearchResponse> response) {
                 if (response.isSuccessful()) {
