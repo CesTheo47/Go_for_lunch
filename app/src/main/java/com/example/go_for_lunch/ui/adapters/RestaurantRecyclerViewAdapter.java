@@ -33,11 +33,20 @@ public class RestaurantRecyclerViewAdapter extends RecyclerView.Adapter<Restaura
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Restaurant restaurant = mRestaurants.get(position);
         holder.mBinding.itemListName.setText(restaurant.getName());
-        holder.mBinding.itemListAddress.setText(restaurant.getVicinity());
+
+        // Get full adress
+        String fullAddress = restaurant.getVicinity();
+        // Only text before the comma
+        String addressBeforeComma = "";
+        if (fullAddress != null && fullAddress.contains(",")) {
+            addressBeforeComma = fullAddress.substring(0, fullAddress.indexOf(","));}
+        holder.mBinding.itemListAddress.setText(addressBeforeComma);
+
         // get first restaurant type
         List<String> types = restaurant.getTypes();
         String firstType = (types != null && !types.isEmpty()) ? types.get(0) : "";
         holder.mBinding.itemListType.setText(firstType);
+
         /*holder.mBinding.itemListHour.(openingHours.isOpenNow());*/
         // Methode pour check si le restaurant à des horraires d'ouvertures => null
         /*holder.mBinding.itemListHour.setText(restaurant.getOpeningHours().toString());*/
