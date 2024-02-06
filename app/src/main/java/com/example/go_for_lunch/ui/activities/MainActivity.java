@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadNearbyRestaurants() {
-        // Charger les restaurants à proximité en utilisant ViewModel
+        // Get restaurant around with ViewModel
         viewModel.loadNearbyRestaurants(currentLatitude, currentLongitude);
     }
 
