@@ -28,15 +28,15 @@ public class RestaurantRecyclerViewAdapter extends RecyclerView.Adapter<Restaura
         return new ViewHolder(binding);
     }
 
-    // Récuperation des données
+    // Get the data
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Restaurant restaurant = mRestaurants.get(position);
         holder.mBinding.itemListName.setText(restaurant.getName());
 
-        // Get full adress
+        // Get full address
         String fullAddress = restaurant.getVicinity();
-        // Only text before the comma
+        // Only text before the comma(virgule)
         String addressBeforeComma = "";
         if (fullAddress != null && fullAddress.contains(",")) {
             addressBeforeComma = fullAddress.substring(0, fullAddress.indexOf(","));}

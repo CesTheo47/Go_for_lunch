@@ -19,7 +19,9 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:label="" />-->
 
-        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyD7QvDNgwoEtxR64PxUpBBMAgw7PbJh1Vc"/>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyD7QvDNgwoEtxR64PxUpBBMAgw7PbJh1Vc" />
         <activity
             android:name=".ui.activities.LoginActivity"
             android:exported="true">

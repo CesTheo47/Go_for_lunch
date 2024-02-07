@@ -94,6 +94,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public double getCurrentLatitude() {
+        return currentLatitude;
+    }
+
+    public double getCurrentLongitude() {
+        return currentLongitude;
+    }
+
     private void loadNearbyRestaurants() {
         // Get restaurant around with ViewModel
         viewModel.loadNearbyRestaurants(currentLatitude, currentLongitude);
