@@ -48,17 +48,20 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
     public void onMapReady(GoogleMap map) {
         googleMap = map;
 
-        // Zoom sur la position actuelle
+        // get current location in Main Activity
         MainActivity mainActivity = (MainActivity) requireActivity();
         currentLatitude = mainActivity.getCurrentLatitude();
         currentLongitude = mainActivity.getCurrentLongitude();
         LatLng currentLocation = new LatLng(currentLatitude, currentLongitude);
+        // Marker to current location
+        googleMap.addMarker(new MarkerOptions().position(currentLocation).title("Current location"));
+        // zoom to current location
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 10f));
 
-        // Observer les données des restaurants
+        // Observe restaurant data
         viewModel.getNearbyRestaurants().observe(getViewLifecycleOwner(), nearbySearchResponse -> {
             if (nearbySearchResponse != null && nearbySearchResponse.getRestaurants() != null) {
-                // Parcourir les restaurants et placer des marqueurs
+                // Browse restaurants and place markers
                 for (Restaurant restaurant : nearbySearchResponse.getRestaurants()) {
                     LatLng restaurantLatLng = new LatLng(
                             restaurant.getGeometry().getLocation().getLat(),
