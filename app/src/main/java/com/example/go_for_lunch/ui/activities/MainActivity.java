@@ -55,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Initializing currentLocation
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-        // Obtenir la localisation actuelle
         getCurrentLocation();
 
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_container);
@@ -63,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.bottomNavView, navController);
     }
 
-    // get current location
+    // get currentLocation
     @SuppressLint("MissingPermission")
     private void getCurrentLocation() {
         fusedLocationProviderClient.getLastLocation().addOnSuccessListener(location -> {
@@ -102,8 +101,8 @@ public class MainActivity extends AppCompatActivity {
         return currentLongitude;
     }
 
+    // Get restaurant around with ViewModel
     private void loadNearbyRestaurants() {
-        // Get restaurant around with ViewModel
         viewModel.loadNearbyRestaurants(currentLatitude, currentLongitude);
     }
 

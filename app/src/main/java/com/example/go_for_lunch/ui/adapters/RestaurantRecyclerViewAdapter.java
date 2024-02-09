@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.go_for_lunch.databinding.ItemRestaurantBinding;
+import com.example.go_for_lunch.model.OpeningHours;
 import com.example.go_for_lunch.model.Restaurant;
 
 import java.util.ArrayList;
@@ -39,7 +40,8 @@ public class RestaurantRecyclerViewAdapter extends RecyclerView.Adapter<Restaura
         // Only text before the comma(virgule)
         String addressBeforeComma = "";
         if (fullAddress != null && fullAddress.contains(",")) {
-            addressBeforeComma = fullAddress.substring(0, fullAddress.indexOf(","));}
+            addressBeforeComma = fullAddress.substring(0, fullAddress.indexOf(","));
+        }
         holder.mBinding.itemListAddress.setText(addressBeforeComma);
 
         // get first restaurant type
@@ -47,9 +49,17 @@ public class RestaurantRecyclerViewAdapter extends RecyclerView.Adapter<Restaura
         String firstType = (types != null && !types.isEmpty()) ? types.get(0) : "";
         holder.mBinding.itemListType.setText(firstType);
 
-        /*holder.mBinding.itemListHour.(openingHours.isOpenNow());*/
-        // Methode pour check si le restaurant à des horraires d'ouvertures => null
-        /*holder.mBinding.itemListHour.setText(restaurant.getOpeningHours().toString());*/
+        // Check opening hours
+        OpeningHours openingHours = restaurant.getOpeningHours();
+        if (openingHours != null) {
+            if (openingHours.isOpenNow()) {
+                holder.mBinding.itemListHour.setText("Ouvert");
+            } else {
+                holder.mBinding.itemListHour.setText("Fermé");
+            }
+        } else {
+            holder.mBinding.itemListHour.setText("Horaires indisponibles");
+        }
     }
 
 

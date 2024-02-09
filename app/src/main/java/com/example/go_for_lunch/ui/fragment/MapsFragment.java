@@ -17,6 +17,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -28,6 +29,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
     private RestaurantViewModel viewModel;
     private double currentLatitude;
     private double currentLongitude;
+    private UiSettings UiSettings;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,6 +50,12 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap map) {
         googleMap = map;
+
+        UiSettings = map.getUiSettings();
+
+        // Ui settings
+        UiSettings.setZoomControlsEnabled(true);
+
 
         // get current location in Main Activity
         MainActivity mainActivity = (MainActivity) requireActivity();
