@@ -17,6 +17,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -54,7 +55,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         currentLongitude = mainActivity.getCurrentLongitude();
         LatLng currentLocation = new LatLng(currentLatitude, currentLongitude);
         // Marker to current location
-        googleMap.addMarker(new MarkerOptions().position(currentLocation).title("Current location"));
+        googleMap.addMarker(new MarkerOptions().position(currentLocation).title("Current location").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
         // zoom to current location
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 10f));
 
