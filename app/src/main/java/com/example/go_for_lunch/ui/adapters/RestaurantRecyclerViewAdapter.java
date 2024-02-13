@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.go_for_lunch.databinding.ItemRestaurantBinding;
 import com.example.go_for_lunch.model.OpeningHours;
+import com.example.go_for_lunch.model.Photo;
 import com.example.go_for_lunch.model.Restaurant;
 
 import java.util.ArrayList;
@@ -60,6 +61,10 @@ public class RestaurantRecyclerViewAdapter extends RecyclerView.Adapter<Restaura
         } else {
             holder.mBinding.itemListHour.setText("Horaires indisponibles");
         }
+
+        // Get photo TODO
+        List<Photo> photo = restaurant.getPhotos();
+        holder.mBinding.itemListAvatar.getDrawable();
     }
 
 

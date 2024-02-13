@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -20,6 +21,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 
@@ -62,8 +64,10 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         currentLatitude = mainActivity.getCurrentLatitude();
         currentLongitude = mainActivity.getCurrentLongitude();
         LatLng currentLocation = new LatLng(currentLatitude, currentLongitude);
+
         // Marker to current location
         googleMap.addMarker(new MarkerOptions().position(currentLocation).title("Current location").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+
         // zoom to current location
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 10f));
 
@@ -76,9 +80,28 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                             restaurant.getGeometry().getLocation().getLat(),
                             restaurant.getGeometry().getLocation().getLng()
                     );
-                    googleMap.addMarker(new MarkerOptions().position(restaurantLatLng).title(restaurant.getName()));
+                    Marker marker = googleMap.addMarker(new MarkerOptions().position(restaurantLatLng).title(restaurant.getName()).snippet(restaurant.getPlaceId()));
                 }
             }
         });
+        // Add a listener for marker clicks
+        googleMap.setOnMarkerClickListener(marker -> {
+            // Get the restaurant ID from the marker snippet
+            String placeId = marker.getSnippet();
+
+            // Handle marker click
+            handleMarkerClick(placeId);
+
+            // Affichez le place ID dans un Toast pour le tester => à supprimer un fois finit
+            Toast.makeText(getContext(), "Place ID: " + placeId, Toast.LENGTH_SHORT).show();
+
+
+            // Return true to indicate that the listener has consumed the event
+            return true;
+        });
+    }
+    private void handleMarkerClick(String placeId) {
+        // Implement your logic to navigate to restaurant details
+        // Use the restaurant ID to display relevant details
     }
 }

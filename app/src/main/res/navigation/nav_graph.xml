@@ -17,4 +17,9 @@
         android:id="@+id/navigation_map"
         android:name="com.example.go_for_lunch.ui.fragment.MapsFragment"
         android:label="MapsFragment" />
+
+    <fragment
+        android:id="@+id/navigation_restaurant_detail"
+        android:name="com.example.go_for_lunch.ui.fragment.RestaurantDetailFragment"
+        android:label="RestaurantDetailFragment" />
 </navigation>
