@@ -22,4 +22,9 @@
         android:id="@+id/navigation_restaurant_detail"
         android:name="com.example.go_for_lunch.ui.fragment.RestaurantDetailFragment"
         android:label="RestaurantDetailFragment" />
+
+    <action
+        android:id="@+id/action_mapsFragment_to_restaurantDetailFragment"
+        app:destination="@id/navigation_restaurant_detail" />
+
 </navigation>

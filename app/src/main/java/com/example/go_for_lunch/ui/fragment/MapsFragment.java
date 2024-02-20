@@ -4,11 +4,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.example.go_for_lunch.R;
 import com.example.go_for_lunch.model.Restaurant;
@@ -69,7 +69,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         googleMap.addMarker(new MarkerOptions().position(currentLocation).title("Current location").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
 
         // zoom to current location
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 10f));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 13f));
 
         // Observe restaurant data
         viewModel.getNearbyRestaurants().observe(getViewLifecycleOwner(), nearbySearchResponse -> {
@@ -88,20 +88,21 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         googleMap.setOnMarkerClickListener(marker -> {
             // Get the restaurant ID from the marker snippet
             String placeId = marker.getSnippet();
+            String restaurantName = marker.getTitle();
 
             // Handle marker click
-            handleMarkerClick(placeId);
+            handleMarkerClick(placeId, restaurantName);
 
-            // Affichez le place ID dans un Toast pour le tester => à supprimer un fois finit
-            Toast.makeText(getContext(), "Place ID: " + placeId, Toast.LENGTH_SHORT).show();
-
-
-            // Return true to indicate that the listener has consumed the event
             return true;
         });
     }
-    private void handleMarkerClick(String placeId) {
+    private void handleMarkerClick(String placeId, String restaurantName) {
         // Implement your logic to navigate to restaurant details
         // Use the restaurant ID to display relevant details
+        Bundle bundle = new Bundle();
+        bundle.putString("placeId", placeId);
+        bundle.putString("restaurantName", restaurantName);
+
+        Navigation.findNavController(requireView()).navigate(R.id.action_mapsFragment_to_restaurantDetailFragment, bundle);
     }
 }
