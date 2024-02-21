@@ -58,7 +58,6 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         // Ui settings
         UiSettings.setZoomControlsEnabled(true);
 
-
         // get current location in Main Activity
         MainActivity mainActivity = (MainActivity) requireActivity();
         currentLatitude = mainActivity.getCurrentLatitude();
@@ -80,28 +79,43 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                             restaurant.getGeometry().getLocation().getLat(),
                             restaurant.getGeometry().getLocation().getLng()
                     );
-                    Marker marker = googleMap.addMarker(new MarkerOptions().position(restaurantLatLng).title(restaurant.getName()).snippet(restaurant.getPlaceId()));
+                    MarkerOptions markerOptions = new MarkerOptions()
+                            .position(restaurantLatLng)
+                            .title(restaurant.getName())
+                            .snippet(restaurant.getPlaceId());
+                    Marker marker = googleMap.addMarker(markerOptions);
+
+                    // Attach restaurant data to marker
+                    marker.setTag(restaurant);
                 }
             }
         });
+
         // Add a listener for marker clicks
         googleMap.setOnMarkerClickListener(marker -> {
-            // Get the restaurant ID from the marker snippet
-            String placeId = marker.getSnippet();
-            String restaurantName = marker.getTitle();
+            // Get the restaurant data from the marker's tag
+            Restaurant restaurant = (Restaurant) marker.getTag();
+            if (restaurant != null) {
+                // Get the relevant information
+                String placeId = restaurant.getPlaceId();
+                String restaurantName = restaurant.getName();
+                String restaurantAddress = restaurant.getVicinity();
+                String restaurantType = restaurant.getTypes().isEmpty() ? "Unknown" : restaurant.getTypes().get(0); // Assuming the first type is the main type
 
-            // Handle marker click
-            handleMarkerClick(placeId, restaurantName);
+                // Handle marker click
+                handleMarkerClick(placeId, restaurantName, restaurantAddress, restaurantType);
+            }
 
             return true;
         });
     }
-    private void handleMarkerClick(String placeId, String restaurantName) {
-        // Implement your logic to navigate to restaurant details
-        // Use the restaurant ID to display relevant details
+
+    private void handleMarkerClick(String placeId, String restaurantName, String restaurantAddress, String restaurantType) {
         Bundle bundle = new Bundle();
         bundle.putString("placeId", placeId);
         bundle.putString("restaurantName", restaurantName);
+        bundle.putString("restaurantAddress", restaurantAddress);
+        bundle.putString("restaurantType", restaurantType);
 
         Navigation.findNavController(requireView()).navigate(R.id.action_mapsFragment_to_restaurantDetailFragment, bundle);
     }
