@@ -1,6 +1,7 @@
 package com.example.go_for_lunch.ui.fragment;
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.example.go_for_lunch.R;
+import com.example.go_for_lunch.model.Photo;
 import com.example.go_for_lunch.model.Restaurant;
 import com.example.go_for_lunch.ui.activities.MainActivity;
 import com.example.go_for_lunch.viewModel.RestaurantViewModel;
@@ -23,6 +25,9 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MapsFragment extends Fragment implements OnMapReadyCallback {
@@ -100,22 +105,35 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                 String placeId = restaurant.getPlaceId();
                 String restaurantName = restaurant.getName();
                 String restaurantAddress = restaurant.getVicinity();
-                String restaurantType = restaurant.getTypes().isEmpty() ? "Unknown" : restaurant.getTypes().get(0); // Assuming the first type is the main type
+                String restaurantType = restaurant.getTypes().isEmpty() ? "Unknown" : restaurant.getTypes().get(0);
+                float restaurantRating = (float) restaurant.getRating();
+                List<Photo> restaurantPhotos = restaurant.getPhotos();
 
                 // Handle marker click
-                handleMarkerClick(placeId, restaurantName, restaurantAddress, restaurantType);
+                handleMarkerClick(placeId, restaurantName, restaurantAddress, restaurantType, restaurantRating, restaurantPhotos);
             }
 
             return true;
         });
     }
 
-    private void handleMarkerClick(String placeId, String restaurantName, String restaurantAddress, String restaurantType) {
+    private void handleMarkerClick(String placeId, String restaurantName, String restaurantAddress, String restaurantType, double restaurantRating, List<Photo> restaurantPhotos) {
+        if (restaurantRating < 0 || restaurantRating > 5) {
+            return;
+        }
+
         Bundle bundle = new Bundle();
         bundle.putString("placeId", placeId);
         bundle.putString("restaurantName", restaurantName);
         bundle.putString("restaurantAddress", restaurantAddress);
         bundle.putString("restaurantType", restaurantType);
+        bundle.putFloat("restaurantRating", (float) restaurantRating);
+        // Convert list of photos to ArrayList<Parcelable>
+        ArrayList<Parcelable> parcelablePhotos = new ArrayList<>();
+        for (Photo photo : restaurantPhotos) {
+            parcelablePhotos.add((Parcelable) photo);
+        }
+        bundle.putParcelableArrayList("restaurantPhotos", parcelablePhotos);
 
         Navigation.findNavController(requireView()).navigate(R.id.action_mapsFragment_to_restaurantDetailFragment, bundle);
     }

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -24,6 +25,7 @@ public class RestaurantDetailFragment extends Fragment {
             String restaurantName = bundle.getString("restaurantName");
             String restaurantAddress = bundle.getString("restaurantAddress");
             String restaurantType = bundle.getString("restaurantType");
+            float restaurantRating = bundle.getFloat("restaurantRating");
 
             // Update TextViews with real restaurant data
             TextView restaurantNameTextView = view.findViewById(R.id.restaurantName);
@@ -34,6 +36,9 @@ public class RestaurantDetailFragment extends Fragment {
 
             TextView restaurantTypeTextView = view.findViewById(R.id.restaurantType);
             restaurantTypeTextView.setText(restaurantType);
+
+            RatingBar restaurantRatingBar = view.findViewById(R.id.restaurantRating);
+            restaurantRatingBar.setRating(restaurantRating);
         }
     }
 
